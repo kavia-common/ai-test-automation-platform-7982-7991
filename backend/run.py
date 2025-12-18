@@ -31,7 +31,7 @@ def _resolve_port() -> int:
         return int(port_str)
     except (TypeError, ValueError):
         # Fallback to default if invalid
-        return 3001
+        return 3010
 
 def _log(msg: str) -> None:
     """Lightweight logger to stdout."""
@@ -47,9 +47,9 @@ if __name__ == "__main__":
     port_in_use = in_use_localhost or in_use_all
 
     # If the requested port is 3001 and appears in use, assume preview orchestrator is serving it
-    if port_in_use and requested_port == 3001:
+    if port_in_use and requested_port == 3010:
         _log(
-            "Detected that port 3001 is already in use. "
+            "Detected that port 3010 is already in use. "
             "This environment's preview orchestrator likely already runs the backend. "
             "Exiting to avoid a conflict. If you need a manual instance, set PORT to a different value."
         )
@@ -57,7 +57,7 @@ if __name__ == "__main__":
         sys.exit(0)
 
     # If a different env-specified port is in use, exit with a clear message
-    if port_in_use and requested_port != 3001:
+    if port_in_use and requested_port != 3010:
         _log(
             f"Requested PORT={requested_port} is already in use. "
             "Please choose another port (e.g., set PORT to a free value). Exiting."
